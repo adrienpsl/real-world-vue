@@ -2,30 +2,36 @@
   <div>
     <h1>Create an Event</h1>
     <form @submit.prevent="createEvent">
-      <label>Select a category</label>
-      <select v-model="event.category">
-        <option v-for="cat in categories" :key="cat">{{ cat }}</option>
-      </select>
+      <BaseSelect
+        :options="categories"
+        v-model="event.category"
+        label="select a category"
+      />
 
       <h3>Name & describe your event</h3>
-      <div class="field">
-        <label>Title</label>
-        <input v-model="event.title" type="text" placeholder="Add an event title"/>
-      </div>
-
-      <div class="field">
-        <label>Description</label>
-        <input v-model="event.description" type="text" placeholder="Add a description"/>
-      </div>
-
+      <BaseInput
+              v-model="event.title"
+              label="Title"
+              type="text"
+              placeholder="Add an event title"
+              class="field"
+      />
+      <BaseInput
+              v-model="event.description"
+              label="Description"
+              type="text"
+              placeholder="Add a description"
+              class="field"
+      />
       <h3>Where is your event?</h3>
-      <div class="field">
-        <label>Location</label>
-        <input v-model="event.location" type="text" placeholder="Add a location"/>
-      </div>
-
+      <BaseInput
+              v-model="event.location"
+              label="Location"
+              type="text"
+              placeholder="Add a location"
+              class="field"
+      />
       <h3>When is your event?</h3>
-
       <div class="field">
         <label>Date</label>
         <datepicker v-model="event.date" placeholder="Select a date"/>
@@ -38,7 +44,9 @@
         </select>
       </div>
 
-      <input type="submit" class="button -fill-gradient" value="Submit"/>
+      <BaseButton buttonClass="-fill-gradient" @click="createEvent">
+        toto
+      </BaseButton>
     </form>
   </div>
 </template>
@@ -47,9 +55,13 @@
 <script>
 import Datepicker from 'vuejs-datepicker'
 import NProgress from 'nprogress'
+import BaseInput from '../components/BaseInput';
+import BaseSelect from '../components/BaseSelect';
 
 export default {
   components: {
+    BaseSelect,
+    BaseInput,
     Datepicker
   },
   data() {
