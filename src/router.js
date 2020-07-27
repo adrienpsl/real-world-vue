@@ -33,19 +33,24 @@ const router = new Router( {
              .then( event => {
                routeTo.params.event = event;
                next();
-             } );
+             } )
+             .catch( () => next( {
+               name  : '404',
+               params: { resource: 'event' }
+             } ) );
       }
     },
 
-    // not found component
+    // not found componenT
     {
       path     : '404',
       name     : '404',
-      component: NotFound
+      component: NotFound,
+      props    : true
     },
     {
       path    : '*',
-      redirect: { name: '404' }
+      redirect: { name: '404', params: { resource: 'page' } }
     }
   ]
 } );
