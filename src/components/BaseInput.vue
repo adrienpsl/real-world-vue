@@ -15,15 +15,12 @@
 </template>
 
 <script>
+  import { formFieldMixin } from '../mixins/formFieldMixin';
+
   export default {
-    inheritAttrs: false,
-    props       : {
+    mixins: [ formFieldMixin ],
+    props : {
       label: String
     },
-    methods     : {
-      updateValue( event ) {
-        this.$emit( 'input', event.target.value );
-      }
-    }
   };
 </script>
